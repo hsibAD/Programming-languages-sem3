@@ -1,0 +1,14 @@
+ASM=nasm
+AFLAGS=-f elf64
+
+%.o: %.asm
+	$(ASM) $(AFLAGS) -o $@ $<
+
+program: lib.o main.o
+	ld -o program $^
+
+clean:
+	rm -f *.o
+
+.PHONY:
+	clean
